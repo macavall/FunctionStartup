@@ -61,3 +61,37 @@ namespace FunctionStartup
     }
 }
 ```
+
+Finally the Function App Injection Portion appears as follows
+```C#
+using System;
+using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Host;
+using Microsoft.Extensions.Logging;
+using Azure.Storage.Queues;
+
+namespace FunctionStartup
+{
+    public class Function1
+    {
+        private readonly IMyBlobClient _myBlobClient;
+
+        public Function1(IMyBlobClient myBlobClient)
+        {
+            _myBlobClient = myBlobClient;
+        }
+
+        // Instantiate a QueueClient which will be used to create and manipulate the queue
+        //static QueueClient queueClient = new QueueClient("DefaultEndpointsProtocol=https;AccountName=globalstorage5601;AccountKey=MiUoNPnBtIbVmTM0c9/T6DQ3j+0Df+qgR7tR0HPRsyqOxNrzq2oaTvekkJWZCPA25SteIygcxSfZUMhERosepA==;EndpointSuffix=core.windows.net", "myqueue-items");
+
+        [FunctionName("Function1")]
+        public void Run([TimerTrigger("*/5 * * * * *")]TimerInfo myTimer, ILogger log)
+        {
+            log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
+
+            _myBlobClient.SendMessage("message=messageValue");
+        }
+    }
+}
+
+```
