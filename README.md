@@ -82,9 +82,6 @@ namespace FunctionStartup
             _myBlobClient = myBlobClient;
         }
 
-        // Instantiate a QueueClient which will be used to create and manipulate the queue
-        //static QueueClient queueClient = new QueueClient("DefaultEndpointsProtocol=https;AccountName=globalstorage5601;AccountKey=MiUoNPnBtIbVmTM0c9/T6DQ3j+0Df+qgR7tR0HPRsyqOxNrzq2oaTvekkJWZCPA25SteIygcxSfZUMhERosepA==;EndpointSuffix=core.windows.net", "myqueue-items");
-
         [FunctionName("Function1")]
         public void Run([TimerTrigger("*/5 * * * * *")]TimerInfo myTimer, ILogger log)
         {
