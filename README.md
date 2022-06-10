@@ -27,3 +27,37 @@ namespace FunctionStartup
 }
 
 ```
+
+
+The Interface looks like this:
+```C#
+namespace FunctionStartup
+{
+    public interface IMyBlobClient
+    {
+        public void SendMessage(string messageValue);
+    }
+}
+```
+
+And the MyBlobClient class appears as follows
+```C#
+using Azure.Storage.Queues;
+
+namespace FunctionStartup
+{
+    public class MyBlobClient : IMyBlobClient
+    {
+        public static QueueClient queueClient = new QueueClient("DefaultEndpointsProtocol=https;AccountName=globalstorage5601;AccountKey=;EndpointSuffix=core.windows.net", "myqueue-items");
+
+        public MyBlobClient()
+        {
+        }
+
+        public void SendMessage(string messageValue)
+        {
+            queueClient.SendMessage(messageValue);
+        }
+    }
+}
+```
