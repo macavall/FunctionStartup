@@ -62,7 +62,7 @@ namespace FunctionStartup
 }
 ```
 
-# [IoC Example][ioc]
+# [IoC Example]
 Finally the Function App Injection Portion appears as follows
 ```C#
 using System;
