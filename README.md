@@ -6,20 +6,12 @@ In this example we are injecting a **Table Client** and **Blob Client**
 
 ```C#
 using System;
-using System.Net;
-using System.Net.Http;
-using Azure.Core;
-using Azure.Data.AppConfiguration;
-using Azure.Identity;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
-using Microsoft.Extensions.Azure;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Identity.Client;
-using Microsoft.WindowsAzure.Storage;
-using Azure.Data.Tables;
-
 
 [assembly: FunctionsStartup(typeof(FunctionStartup.Startup))]
 
@@ -29,17 +21,7 @@ namespace FunctionStartup
     {
         public override void Configure(IFunctionsHostBuilder builder)
         {
-            var services = builder.Services;
-
-            var storageConnectionString = Environment.GetEnvironmentVariable("storageConnectionString");
-
-            services.AddLogging();
-            services.AddAzureAppConfiguration();
-            services.AddAzureClients(builder =>
-            {
-                builder.AddTableServiceClient("storageConnectionString");
-                builder.AddQueueServiceClient("storageConnectionString");
-            });
+            builder.Services.AddSingleton<IMyBlobClient, MyBlobClient>();
         }
     }
 }
