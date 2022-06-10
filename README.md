@@ -62,7 +62,9 @@ namespace FunctionStartup
 }
 ```
 
-[Heading]: #heading Finally the Function App Injection Portion appears as follows
+# [Star Formation Theory][sft]
+[Reference to this section](#sft)
+Finally the Function App Injection Portion appears as follows
 ```C#
 using System;
 using Microsoft.Azure.WebJobs;
