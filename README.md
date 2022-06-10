@@ -62,7 +62,7 @@ namespace FunctionStartup
 }
 ```
 
-Finally the Function App Injection Portion appears as follows
+[Heading]: #heading Finally the Function App Injection Portion appears as follows
 ```C#
 using System;
 using Microsoft.Azure.WebJobs;
