@@ -62,8 +62,7 @@ namespace FunctionStartup
 }
 ```
 
-# [Star Formation Theory][sft]
-[Reference to this section](#sft)
+# [IoC Example][ioc]
 Finally the Function App Injection Portion appears as follows
 ```C#
 using System;
